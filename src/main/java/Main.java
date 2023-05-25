@@ -51,13 +51,24 @@ public class Main {
             return people;
         }
 
-        private static double calculateAverageAge(List<Person> people) {
+         /*private static double calculateAverageAge(List<Person> people) {
             int totalAge = 0;
             for (Person person : people) {
                 totalAge += person.getAge();
             }
             return (double) totalAge / people.size();
-        }
+
+
+        }*/
+         private static double calculateAverageAge(List<Person> people) {
+             int totalAge = people.stream().map(Person::getAge)
+                     .reduce(0, (total, num) -> total += num);
+             double averageAge = (double) totalAge / people.size();
+
+             return (double) totalAge / people.size();
+
+
+         }
 
         private static int findOldestAge(List<Person> people) {
             int maxAge = Integer.MIN_VALUE;
