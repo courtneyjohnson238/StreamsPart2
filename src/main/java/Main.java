@@ -5,7 +5,23 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-            List<Person> people = createPeopleList();
+        List<Person> people = createPeopleList();
+
+        System.out.print("Enter a name to search: ");
+        Scanner scanner = new Scanner(System.in);
+        String searchName = scanner.nextLine();
+
+
+        List<Person> matchingPeople = people.stream()
+                .filter(person -> person.getFirstName().equalsIgnoreCase(searchName) ||
+                        person.getLastName().equalsIgnoreCase(searchName))
+                .toList();
+
+        System.out.println("People with matching name:");
+        matchingPeople.forEach(person -> System.out.println(person.getFirstName() + " " + person.getLastName()));
+    }
+
+           /* List<Person> people = createPeopleList();
 
             System.out.print("Enter a name to search: ");
             Scanner scanner = new Scanner(System.in);
@@ -15,24 +31,24 @@ public class Main {
             for (Person person : people) {
                 if (person.getFirstName().equalsIgnoreCase(searchName) ||
                         person.getLastName().equalsIgnoreCase(searchName)) {
-                    matchingPeople.add(person);
-                }
-            }
+                    matchingPeople.add(person);*/
 
-            System.out.println("People with matching name:");
+
+           /* System.out.println("People with matching name:");
             for (Person person : matchingPeople) {
-                System.out.println(person.getFirstName() + " " + person.getLastName());
-            }
+                System.out.println(person.getFirstName() + " " + person.getLastName()); */
 
-            double averageAge = calculateAverageAge(people);
-            System.out.println("Average age: " + averageAge);
 
-            int oldestAge = findOldestAge(people);
-            System.out.println("Oldest person's age: " + oldestAge);
+   /* double averageAge = calculateAverageAge(people);
+            System.out.println("Average age: "+averageAge);
 
-            int youngestAge = findYoungestAge(people);
-            System.out.println("Youngest person's age: " + youngestAge);
-        }
+    int oldestAge = findOldestAge(people);
+            System.out.println("Oldest person's age: "+oldestAge);
+
+    int youngestAge = findYoungestAge(people);
+            System.out.println("Youngest person's age: "+youngestAge);*/
+
+
 
         private static List<Person> createPeopleList() {
             List<Person> people = new ArrayList<>();
